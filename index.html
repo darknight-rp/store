@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DarkNightRP Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#1e1b2b;
+  --panel:#3a3650;
+  --accent:#b44cff;
+  --accent-gradient:linear-gradient(45deg,#b44cff,#ff4ca1);
+  --yellow:#ffd56a;
+  --green:#3cff3c;
+}
+
+*{box-sizing:border-box;font-family:Montserrat,sans-serif;transition: all 0.3s ease}
+body{margin:0;background:var(--bg);color:#fff;scroll-behavior:smooth}
+
+/* HEADER */
+header{display:flex;justify-content:flex-end;padding:20px 40px;color:#aaa;position:sticky;top:0;background:rgba(30,27,43,0.85);backdrop-filter:blur(10px);z-index:100}
+header span{color:var(--accent);font-weight:700;cursor:pointer}
+header span:hover{text-shadow:0 0 8px var(--accent),0 0 20px var(--accent)}
+.user-avatar{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:middle;text-align:center;line-height:28px;font-weight:bold;color:#fff;font-size:14px;box-shadow:0 0 8px var(--accent)}
+
+/* HERO */
+.hero{text-align:center;padding:100px 20px 40px;position:relative}
+.logo{font-size:80px;font-weight:900;color:var(--accent);line-height:.9;text-shadow:0 0 35px rgba(180,76,255,.7);background:linear-gradient(135deg,#b44cff,#ff4ca1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation: glow 2s ease-in-out infinite alternate}
+@keyframes glow{0%{text-shadow:0 0 20px #b44cff,0 0 40px #ff4ca1}100%{text-shadow:0 0 35px #ff4ca1,0 0 60px #b44cff}}
+.hero-info{display:flex;justify-content:center;gap:70px;margin-top:50px;flex-wrap:wrap}
+.hero-box{color:#aaa;cursor:pointer}
+.hero-box:hover strong{color:var(--yellow)}
+
+/* NAV */
+.nav{display:flex;justify-content:center;gap:20px;margin:50px 0;flex-wrap:wrap}
+.nav button{background:#2a273d;border:none;color:#fff;padding:16px 40px;border-radius:15px;font-weight:700;cursor:pointer;position:relative;overflow:hidden}
+.nav button::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--accent-gradient);transform:scaleX(0);transform-origin:left;transition:0.4s ease;z-index:0;opacity:0.5}
+.nav button:hover::before{transform:scaleX(1)}
+.nav button span{position:relative;z-index:1}
+
+/* DROPDOWN */
+.dropdown{max-width:1200px;margin:0 auto 40px;display:none;opacity:0;transform:translateY(-20px);transition:0.3s ease}
+.dropdown.active{display:grid;opacity:1;transform:translateY(0);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+
+/* CARD */
+.card{background:var(--panel);border-radius:16px;padding:20px;transition:0.3s ease;cursor:pointer;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 15px 30px rgba(0,0,0,0.6)}
+.card img{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:12px}
+.rank-logo{font-size:24px;font-weight:800;margin-bottom:10px;background:linear-gradient(45deg,#b44cff,#ff4ca1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.price{display:inline-block;border:2px solid var(--green);color:var(--green);padding:6px 12px;border-radius:20px;font-size:13px;margin:10px 0}
+.buttons{margin-top:15px}
+.buy{background:var(--yellow);border:none;padding:10px 22px;border-radius:25px;font-weight:700;cursor:pointer;transition:0.2s}
+.buy:hover{transform:scale(1.05)}
+.info{background:transparent;border:2px solid var(--yellow);color:var(--yellow);padding:10px 22px;border-radius:25px;font-weight:700;margin-left:10px;cursor:pointer}
+.info:hover{transform:scale(1.05)}
+
+/* FOOTER */
+.footer-panel{background:#141417;max-width:1200px;margin:80px auto 0;padding:40px;border-radius:14px;font-size:14px;color:#ccc}
+.footer-panel a{color:var(--accent);text-decoration:none}
+.footer-buttons{margin-top:20px}
+.footer-buttons a{background:#ff3b3b;color:#fff;padding:10px 18px;border-radius:8px;font-weight:700;text-decoration:none;margin-right:10px;transition:0.2s}
+.footer-buttons a:hover{transform:scale(1.05)}
+.copyright{text-align:center;margin:40px 0 20px;font-size:13px;color:#999}
+
+/* TEBEX BAR */
+.tebex-bar{background:#0b0b0d;border-top:1px solid #1f1f25;padding:12px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;font-size:12px;color:#888}
+.tebex-bar a{color:var(--accent);text-decoration:none;margin-left:10px}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:0.3s ease}
+.modal.active{opacity:1;pointer-events:auto}
+.modal-box{background:var(--panel);padding:30px;border-radius:14px;width:350px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.6);transform:scale(0.95);transition:0.3s ease}
+.modal.active .modal-box{transform:scale(1)}
+.modal-box h2{margin:0 0 20px 0;color:var(--accent);font-size:24px;background:linear-gradient(135deg,#b44cff,#ff4ca1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.modal-box img{width:150px;height:150px;object-fit:cover;border-radius:12px;margin-bottom:15px}
+.modal-box button{background:var(--yellow);border:none;padding:12px 20px;border-radius:25px;font-weight:700;cursor:pointer;width:100%;transition:0.2s;margin-bottom:10px}
+.modal-box button:hover{transform:scale(1.05)}
+.modal-box p{margin:0;color:#aaa;cursor:pointer;font-size:12px}
+.modal-box p:hover{color:#fff;text-decoration:underline}
+.modal-box input{width:100%;padding:12px;border:none;border-radius:8px;margin-bottom:20px;font-size:14px;background:#2a273d;color:#fff;outline:none}
+.modal-box input:focus{box-shadow:0 0 10px var(--accent)}
+</style>
+</head>
+<body>
+
+<header>
+  <div id="userBox">Guest · <span onclick="login()">CLICK TO LOGIN</span></div>
+</header>
+
+<section class="hero">
+  <div class="logo">DarkNight<br>RP</div>
+  <div class="hero-info">
+    <div class="hero-box"><strong>93.123.16.103 </strong>Click to copy</div>
+    <div class="hero-box"><strong>Discord Server </strong>319 members</div>
+  </div>
+</section>
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="toggleDropdown('staff')">Екип</button>
+  <button onclick="toggleDropdown('mafia')">Мафия</button>
+</div>
+
+<!-- STAFF -->
+<div id="staff" class="dropdown">
+  <div class="grid">
+    <div class="card">
+      <div class="rank-logo">Модератор</div>
+      <div class="price">5.99 EUR</div>
+      <div class="buttons"><button class="buy" onclick="openPayPal('Модератор','5.99','images/moderator.png')">Купи</button><button class="info">INFO</button></div>
+    </div>
+    <div class="card">
+      <div class="rank-logo">Главен Модератор</div>
+      <div class="price">9.99 EUR</div>
+      <div class="buttons"><button class="buy" onclick="openPayPal('Главен Модератор','9.99','images/headmoderator.png')">Купи</button><button class="info">INFO</button></div>
+    </div>
+        <div class="card">
+      <div class="rank-logo">Тест Администратор</div>
+      <div class="price">19.99 EUR</div>
+      <div class="buttons"><button class="buy" onclick="openPayPal('Главен Модератор','19.99','images/headmoderator.png')">Купи</button><button class="info">INFO</button></div>
+    </div>
+        <div class="card">
+      <div class="rank-logo">Администратор
+      </div>
+      <div class="price">29.99 EUR</div>
+      <div class="buttons"><button class="buy" onclick="openPayPal('Главен Модератор','29.99','images/headmoderator.png')">Купи</button><button class="info">INFO</button></div>
+    </div>
+        <div class="card">
+      <div class="rank-logo">Главен Администратор</div>
+      <div class="price">39.99 EUR</div>
+      <div class="buttons"><button class="buy" onclick="openPayPal('Главен Модератор','39.99','images/headmoderator.png')">Купи</button><button class="info">INFO</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAFIA -->
+<div id="mafia" class="dropdown">
+  <div class="grid">
+    <div class="card">
+      <img src="file:///C:/Users/OWNERAA/Downloads/lazer/randoma/%D0%B8%D0%B7%D1%82%D0%B5%D0%B3%D0%BB%D0%B5%D0%BD%20%D1%84%D0%B0%D0%B9%D0%BB.png" alt="Gang Pack">
+      <div class="rank-logo">Gang Pack</div>
+      <div class="price">4.99 EUR</div>
+      <button class="buy" onclick="openPayPal('Gang Pack','4.99','images/gangpack.png')">BUY</button>
+    </div>
+    <div class="card">
+      <img src="file:///C:/Users/OWNERAA/Downloads/lazer/randoma/awewe.png" alt="Mafia Pack">
+      <div class="rank-logo">Mafia Pack</div>
+      <div class="price">9.99 EUR</div>
+      <button class="buy" onclick="openPayPal('Mafia Pack','9.99','images/mafiapack.png')">BUY</button>
+    </div>
+    <div class="card">
+      <img src="file:///C:/Users/OWNERAA/Downloads/lazer/randoma/33333.png" alt="Тарикацка мафиа">
+      <div class="rank-logo">Тарикацка мафиа</div>
+      <div class="price">10.99 EUR</div>
+      <button class="buy" onclick="openPayPal('Тарикацка мафиа','10.99','')">BUY</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAYPAL MODAL -->
+<div class="modal" id="paypalModal">
+  <div class="modal-box">
+    <h2 id="paypalTitle">Buy</h2>
+    <img id="paypalImage" src="" alt="Product">
+    <a id="paypalButton" href="#" target="_blank"><button>Плати с  PayPal</button></a>
+    <p onclick="closePayPal()">Затвори</p>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+  <div class="modal-box">
+    <h2>Login</h2>
+    <input id="usernameInput" type="text" placeholder="Enter username">
+    <button onclick="doLogin()">LOGIN</button>
+    <p onclick="closeLogin()">Cancel</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-panel">
+  Всички дадени пари не се връщат и се дават за сървара а не за други неща.<br><br>
+ Когато купиш нещо отвори тикет и прати транзакция и ще ти се отговори за по-малко от 15-20 минути <a href="#">Discord Server</a>.
+  <div class="footer-buttons">
+    <a href="#">Terms & Conditions</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+</div>
+
+<div class="copyright">
+  © DarkNightRP 2026 · Not affiliated with Mojang AB
+</div>
+
+<div class="tebex-bar">
+  <div>Tebex Limited handles payments & refunds.</div>
+  <div><a href="#">Impressum</a><a href="#">Terms</a><a href="#">Privacy</a></div>
+</div>
+
+<script>
+/* DROPDOWN */
+function toggleDropdown(id){
+  const el = document.getElementById(id);
+  document.querySelectorAll('.dropdown').forEach(d=>{if(d!==el) d.classList.remove('active');});
+  el.classList.toggle('active');
+}
+
+/* LOGIN SYSTEM */
+const userBox=document.getElementById("userBox");
+const loginModal=document.getElementById("loginModal");
+const paypalModal=document.getElementById("paypalModal");
+
+function renderUser(){
+  const username=localStorage.getItem("username");
+  if(username){
+    const firstLetter=username.charAt(0).toUpperCase();
+    userBox.innerHTML=`<span class="user-avatar">${firstLetter}</span> <strong>${username}</strong> · <span onclick="logout()">LOGOUT</span>`;
+  }else{userBox.innerHTML=`Guest · <span onclick="login()">CLICK TO LOGIN</span>`;}
+}
+
+function login(){loginModal.classList.add("active");}
+function closeLogin(){loginModal.classList.remove("active");}
+function doLogin(){
+  const name=document.getElementById("usernameInput").value.trim();
+  if(name.length<2){alert("Username must be at least 2 characters.");return;}ArabinaIsback
+  localStorage.setItem("username",name);
+  renderUser();
+  closeLogin();
+}
+loginModal.addEventListener("click", e=>{if(e.target===loginModal) closeLogin();});
+function logout(){localStorage.removeItem("username"); renderUser();}
+renderUser();
+
+/* PAYPAL MODAL */
+function openPayPal(product,price,img){
+  document.getElementById("paypalTitle").innerText=`Buy ${product} - €${price}`;
+  document.getElementById("paypalImage").src=img;
+  document.getElementById("paypalButton").href=`https://www.paypal.com/paypalme/ArabinaIsback/${price}`;
+  paypalModal.classList.add("active");
+}
+function closePayPal(){paypalModal.classList.remove("active");}
+paypalModal.addEventListener("click", e=>{if(e.target===paypalModal) closePayPal();});
+</script>
+
+</body>
+</html>
