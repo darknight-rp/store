@@ -50,13 +50,13 @@ canvas{position:fixed;inset:0;z-index:-1}
   backdrop-filter:blur(20px);
   border-radius:20px;
   padding:20px;
-  transform: translateX(400px); /* скрита извън екрана */
+  transform: translateX(400px);
   transition: transform 0.3s ease;
   box-shadow:0 0 40px rgba(180,76,255,0.5);
   z-index:1000;
 }
 .cart-panel.active{
-  transform: translateX(0); /* видима */
+  transform: translateX(0);
 }
 
 .cart-item{
@@ -160,6 +160,16 @@ canvas{position:fixed;inset:0;z-index:-1}
   font-weight:800;
   cursor:pointer;
 }
+.info-btn{
+  background:none;
+  border:2px solid #ff4ca1;
+  color:#ff4ca1;
+  border-radius:50%;
+  width:30px;
+  height:30px;
+  font-weight:900;
+  cursor:pointer;
+}
 footer{text-align:center;color:#999;margin-bottom:30px}
 </style>
 </head>
@@ -192,55 +202,64 @@ footer{text-align:center;color:#999;margin-bottom:30px}
      <div class="card">
     <div class="rank-logo">Тест Модератор</div>
     <div class="price">2.99 EUR</div>
-    <button class="buy" data-name="Тест Модератор" data-price="2.99">BUY</button>
+    <button class="buy" data-name="Тест Модератор" data-price="2.99">Добави в Количката</button>
   </div>
   <div class="card">
     <div class="rank-logo">Модератор</div>
     <div class="price">5.99 EUR</div>
-    <button class="buy" data-name="Модератор" data-price="5.99">BUY</button>
+    <button class="buy" data-name="Модератор" data-price="5.99">Добави в Количката</button>
   </div>
      <div class="card">
     <div class="rank-logo">Главен Модератор</div>
     <div class="price">7.99 EUR</div>
-    <button class="buy" data-name="Главен Модератор" data-price="7.99">BUY</button>
+    <button class="buy" data-name="Главен Модератор" data-price="7.99">Добави в Количката</button>
   </div>
    <div class="card">
     <div class="rank-logo">Тест Администратор</div>
     <div class="price">10.99 EUR</div>
-    <button class="buy" data-name="Тест Администратор" data-price="10.99">BUY</button>
+    <button class="buy" data-name="Тест Администратор" data-price="10.99">Добави в Количката</button>
   </div>
    <div class="card">
     <div class="rank-logo">Администратор</div>
     <div class="price">15.99 EUR</div>
-    <button class="buy" data-name="Администратор" data-price="15.99">BUY</button>
+    <button class="buy" data-name="Администратор" data-price="15.99">Добави в Количката</button>
   </div>
    <div class="card">
     <div class="rank-logo">Главен Администратор</div>
     <div class="price">20.99 EUR</div>
-    <button class="buy" data-name="Главен Администратор" data-price="20.99">BUY</button>
+    <button class="buy" data-name="Главен Администратор" data-price="20.99">Добави в Количката</button>
   </div>
   <div class="card">
     <div class="rank-logo">Отговорник на екипа</div>
     <div class="price">24.99 EUR</div>
-    <button class="buy" data-name="Отговорник на екипа" data-price="24.99">BUY</button>
+    <button class="buy" data-name="Отговорник на екипа" data-price="24.99">Добави в Количката</button>
   </div>
 </div>
 
 <div id="mafia" class="dropdown">
   <div class="card">
-    <div class="rank-logo">Gang Pack</div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="rank-logo">Gang Pack</div>
+      <button class="info-btn" onclick="openInfo('Gang Pack','Gang Pack включва: Boss Menu 🔹 Малка gang къща 🏠 🔹 Леки оръжия 💣 🔹 Gang склад 📦 50 кг 🔹 До 4 члена 👥')">!</button>
+    </div>
     <div class="price">4.99 EUR</div>
-    <button class="buy" data-name="Gang Pack" data-price="4.99">BUY</button>
+    <button class="buy" data-name="Gang Pack" data-price="4.99">Добави в Количката</button>
   </div>
-    <div class="card">
-    <div class="rank-logo">Mafia Pack</div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="rank-logo">Мафия Pack</div>
+      <button class="info-btn" onclick="openInfo('Мафия Pack','Mafia Pack включва :Boss Menu 🔹 Малка Мафия къща 🏠 🔹 Леки оръжия и Тежки 💣 🔹 Мафия склад 📦 70 кг 🔹 До 5 члена 👥')">!</button>
+    </div>
     <div class="price">10.99 EUR</div>
-    <button class="buy" data-name="Gang Pack" data-price="10.99">BUY</button>
+    <button class="buy" data-name="Mafia Pack" data-price="10.99">Добави в Количката</button>
   </div>
     <div class="card">
-    <div class="rank-logo">OG Mafia Pack</div>
-    <div class="price">15.99 EUR</div>
-    <button class="buy" data-name="Gang Pack" data-price="15.99">BUY</button>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="rank-logo">OG Мафия Pack</div>
+      <button class="info-btn" onclick="openInfo('OG Мафия Pack','Mafia Pack включва: 🔹F6 MENU 🔹 Boss Menu 🔹 Средна мафиотска къща 🏠 🔹 Леки и средни оръжия 💣🔹 Mafia склад 📦 100kg 🔹 До 6 члена 👥 🔹 Кола за шефа по избор от Car Dealer 🚗 до 150,000$ 🔹 Допълнителна мафиотска кола🔹 Хазна 💰 350,000$')">!</button>
+    </div>
+    <div class="price">10.99 EUR</div>
+    <button class="buy" data-name="Mafia Pack" data-price="10.99">Добави в Количката</button>
   </div>
 </div>
 
@@ -248,21 +267,55 @@ footer{text-align:center;color:#999;margin-bottom:30px}
   <div class="card">
     <div class="rank-logo">Custom Car</div>
     <div class="price">5.99 EUR</div>
-    <button class="buy" data-name="Custom Car" data-price="5.99">BUY</button>
+    <button class="buy" data-name="Custom Car" data-price="5.99">Добави в Количката</button>
   </div>
     <div class="card">
     <div class="rank-logo">Custom Headling</div>
     <div class="price">2.99 EUR</div>
-    <button class="buy" data-name="Custom Car" data-price="2.99">BUY</button>
+    <button class="buy" data-name="Custom Car" data-price="2.99">Добави в Количката</button>
   </div>
     <div class="card">
     <div class="rank-logo">Custom Antilag</div>
     <div class="price">2.99 EUR</div>
-    <button class="buy" data-name="Custom Car" data-price="2.99">BUY</button>
+    <button class="buy" data-name="Custom Car" data-price="2.99">Добави в Количката</button>
   </div>
 </div>
 
 <footer>© DarkNightRP 2026 on top in Bulgaria</footer>
+
+<!-- INFO MODAL -->
+<div id="infoModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(6px);
+z-index:2000;
+align-items:center;
+justify-content:center;
+">
+  <div style="
+  background:#1a1533;
+  border-radius:20px;
+  padding:25px;
+  max-width:420px;
+  width:90%;
+  box-shadow:0 0 40px rgba(180,76,255,0.6);
+  ">
+    <h2 id="infoTitle" style="margin-top:0"></h2>
+    <p id="infoText" style="color:#ccc;line-height:1.6; white-space: pre-line;"></p>
+    <button onclick="closeInfo()" style="
+      margin-top:15px;
+      padding:10px 24px;
+      border:none;
+      border-radius:20px;
+      background:linear-gradient(135deg,#b44cff,#ff4ca1);
+      color:white;
+      font-weight:800;
+      cursor:pointer;
+    ">Затвори</button>
+  </div>
+</div>
 
 <script>
 /* CART */
@@ -307,7 +360,7 @@ function checkout() {
 /* TOGGLE CART */
 function toggleCart(){
   const panel=document.getElementById("cartPanel");
-  panel.classList.toggle("active"); // плъзга панела
+  panel.classList.toggle("active");
 }
 
 /* TABS */
@@ -316,6 +369,16 @@ function openTab(id,btn){
   document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   btn.classList.add("active");
+}
+
+/* INFO MODAL */
+function openInfo(title, text){
+  document.getElementById("infoTitle").innerText = title;
+  document.getElementById("infoText").innerText = text;
+  document.getElementById("infoModal").style.display = "flex";
+}
+function closeInfo(){
+  document.getElementById("infoModal").style.display = "none";
 }
 
 /* PARTICLES */
